@@ -180,14 +180,63 @@ nav {
   box-shadow: 0 6px 20px rgba(242, 101, 34, 0.3);
 }
 .btn-p:hover { background: var(--orange-light); transform: translateY(-2px); }
-.btn-wa img { height: 54px; display: block; object-fit: contain; border-radius: 12px; transition: transform 0.2s; }
-.btn-wa:hover img { transform: translateY(-2px); }
+/* WhatsApp button UNIFIED style */
+.btn-wa {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #25D366;
+  border-radius: 40px;
+  padding: 8px 20px 8px 16px;
+  gap: 12px;
+  text-decoration: none;
+  transition: all 0.25s ease;
+  box-shadow: 0 4px 12px rgba(37, 211, 102, 0.3);
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: white;
+  font-family: 'Outfit', sans-serif;
+}
+.btn-wa i {
+  font-size: 1.45rem;
+  color: white;
+}
+.btn-wa span {
+  letter-spacing: 0.3px;
+}
+.btn-wa:hover {
+  transform: translateY(-2px);
+  background-color: #20b859;
+  box-shadow: 0 8px 20px rgba(37, 211, 102, 0.45);
+}
+/* For the small WA float and others consistency */
+.wa-f {
+  position: fixed;
+  bottom: 28px;
+  right: 28px;
+  z-index: 300;
+  width: 58px;
+  height: 58px;
+  background: #25D366;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  box-shadow: 0 6px 24px rgba(37, 211, 102, 0.45);
+  transition: 0.25s;
+}
+.wa-f i {
+  font-size: 32px;
+  color: white;
+}
+.wa-f:hover { transform: scale(1.12); background: #20b859; }
+
 .hero-stats { display: flex; gap: 36px; margin-top: 44px; flex-wrap: wrap; }
 .stat-num { font-family: 'Bebas Neue'; font-size: 2.4rem; color: var(--blue); line-height: 1; display: block; }
 .stat-lbl { font-size: 0.72rem; color: var(--gray); text-transform: uppercase; letter-spacing: 1px; font-weight: 600; margin-top: 3px; }
 .hero-visual { position: relative; }
 .hero-main-img { width: 100%; height: auto; max-height: 460px; object-fit: cover; border-radius: 22px; box-shadow: 0 24px 64px rgba(26, 63, 164, 0.22); display: block; }
-.hbf, .hbf2 { display: none; } /* optional badges hidden on mobile for clarity, keep design clean */
 
 /* SECTION GLOBAL */
 .sw { max-width: 1280px; margin: 0 auto; padding: 80px 5%; }
@@ -239,7 +288,7 @@ nav {
   letter-spacing: 1px; 
   display: block; 
   line-height: 1; 
-  color: #ffffff !important;  /* FORCER BLANC */
+  color: #ffffff !important;
 }
 .pc-cur { 
   font-size: 0.68rem; 
@@ -327,10 +376,6 @@ footer { background: var(--dark); color: rgba(255, 255, 255, 0.6); padding: 50px
 .fcol a:hover { color: var(--orange); }
 .fbot { max-width: 1280px; margin: 0 auto; border-top: 1px solid rgba(255, 255, 255, 0.2); padding-top: 20px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; font-size: 0.77rem; }
 
-.wa-f { position: fixed; bottom: 28px; right: 28px; z-index: 300; width: 58px; height: 58px; background: #25D366; border-radius: 50%; display: flex; align-items: center; justify-content: center; text-decoration: none; box-shadow: 0 6px 24px rgba(37, 211, 102, 0.45); transition: 0.25s; }
-.wa-f svg { width: 30px; fill: #fff; }
-.wa-f:hover { transform: scale(1.12); }
-
 /* MOBILE MENU */
 .mm { display: none; position: fixed; inset: 0; background: rgba(255, 255, 255, 0.98); z-index: 250; flex-direction: column; align-items: center; justify-content: center; gap: 26px; backdrop-filter: blur(10px); }
 .mm.open { display: flex; }
@@ -371,6 +416,9 @@ footer { background: var(--dark); color: rgba(255, 255, 255, 0.6); padding: 50px
   .sw { padding: 56px 5%; }
   .topbar span:first-child { display: none; }
   .stit { font-size: 2rem; }
+  .btn-wa span { display: none; }
+  .btn-wa { padding: 8px 12px; }
+  .btn-wa i { font-size: 1.3rem; margin-right: 0; }
 }
 @media (max-width: 640px) {
   .svc-grid { grid-template-columns: 1fr; }
@@ -401,8 +449,7 @@ footer { background: var(--dark); color: rgba(255, 255, 255, 0.6); padding: 50px
     </div>
     <div id="popup-cta-area">
       <a id="popup-cta" href="https://wa.me/237678283130" target="_blank" rel="noopener noreferrer">
-        <svg viewBox="0 0 24 24" width="18" height="18" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347M12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0012.05 0z"/></svg>
-        DÉCOUVRIR NOS SOLUTIONS
+        <i class="fab fa-whatsapp"></i> DÉCOUVRIR NOS SOLUTIONS
       </a>
     </div>
   </div>
@@ -428,7 +475,7 @@ footer { background: var(--dark); color: rgba(255, 255, 255, 0.6); padding: 50px
 
 <div class="hero-wrap"><div class="hero">
   <div class="hero-text fu"><div class="hero-badge">📡 GPS &amp; Géolocalisation</div><h1>Surveillez, gérez et protégez<br><em>vos actifs en temps réel.</em></h1><p>SAARE Tracking installe des dispositifs GPS de haute précision sur vos véhicules, motos, camions et objets de valeur. Suivez vos biens en temps réel, 24h/24, partout au Cameroun.</p>
-  <div class="hero-btns"><a href="#tarifs" class="btn-p">▣ Voir les tarifs</a><a href="https://wa.me/237678283130" target="_blank" class="btn-wa"><img src="whatsapp-btn.png" alt="WhatsApp" style="height:54px;"></a></div>
+  <div class="hero-btns"><a href="#tarifs" class="btn-p">▣ Voir les tarifs</a><a href="https://wa.me/237678283130" target="_blank" class="btn-wa"><i class="fab fa-whatsapp"></i><span>WhatsApp</span></a></div>
   <div class="hero-stats"><div><span class="stat-num">4</span><span class="stat-lbl">Villes</span></div><div><span class="stat-num">24/7</span><span class="stat-lbl">Temps réel</span></div><div><span class="stat-num">100%</span><span class="stat-lbl">Garanti</span></div></div></div>
   <div class="hero-visual fu"><img class="hero-main-img" src="hero.png" alt="GPS Tracking"></div>
 </div></div>
@@ -451,14 +498,14 @@ footer { background: var(--dark); color: rgba(255, 255, 255, 0.6); padding: 50px
 <div class="loc-layout"><div><div class="loc-cards"><div class="lc fu" data-lat="7.3236" data-lng="13.5795" data-name="Ngaoundéré"><div class="lc-pin">◉</div><h3>Ngaoundéré</h3><p>Mboumdjéré, près de l'école</p></div>
 <div class="lc fu" data-lat="9.3133" data-lng="13.3922" data-name="Garoua"><div class="lc-pin">◉</div><h3>Garoua</h3><p>Carrefour SODECOTON</p></div>
 <div class="lc fu" data-lat="10.5919" data-lng="14.3248" data-name="Maroua"><div class="lc-pin">◉</div><h3>Maroua</h3><p>Carrefour Koweït</p></div>
-<div class="lc fu" data-lat="4.0511" data-lng="9.7679" data-name="Douala"><div class="lc-pin">◉</div><h3>Douala</h3><p>Camp Yabassi</p></div></div><div class="contacts-box fu"><p><strong>☎ Nos contacts (+237)</strong><br><a href="tel:+237686797845">686 797 845</a> – WhatsApp<br><a href="tel:+237678283130">678 283 130</a> – WhatsApp<br><a href="tel:+237699085808">699 085 808</a><br><a href="mailto:saarestg01@gmail.com">saarestg01@gmail.com</a></p></div></div>
+<div class="lc fu" data-lat="4.0511" data-lng="9.7679" data-name="Douala"><div class="lc-pin">◉</div><h3>Douala</h3><p>Camp Yabassi</p></div></div><div class="contacts-box fu"><p><strong>☎ Nos contacts (+237)</strong><br><a href="tel:+237686797845">686 797 845</a> – <i class="fab fa-whatsapp"></i> WhatsApp<br><a href="tel:+237678283130">678 283 130</a> – <i class="fab fa-whatsapp"></i> WhatsApp<br><a href="tel:+237699085808">699 085 808</a><br><a href="mailto:saarestg01@gmail.com">saarestg01@gmail.com</a></p></div></div>
 <div class="fu"><div class="map-wrap"><iframe id="agency-map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d63716.40!2d13.5795!3d7.3236!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x11ced7e71a6da2c7%3A0x1b1e9eb2e9b0f9d!2sNgaound%C3%A9r%C3%A9%2C%20Cameroun!5e0!3m2!1sfr!2scm!4v1717360000000!5m2!1sfr!2scm" allowfullscreen loading="lazy"></iframe><div class="map-cap">◉ Siège principal : Mboumdjéré, Ngaoundéré</div></div></div></div></div></section>
 
-<section id="contact"><div class="sw"><div class="sh fu"><div class="stag">Parlons-nous</div><div class="stit">Contactez-nous</div><p class="ssub">Prêt à sécuriser vos biens ? Notre équipe vous répond rapidement.</p></div><div class="contact-grid"><div class="fu"><div class="ci"><div class="ci-ico">☎</div><div class="ci-det"><h4>Téléphone</h4><a href="tel:+237686797845">+237 686 797 845</a><a href="tel:+237678283130">+237 678 283 130</a><a href="tel:+237699085808">+237 699 085 808</a></div></div><div class="ci"><div class="ci-ico">💬</div><div class="ci-det"><h4>WhatsApp</h4><a href="https://wa.me/237678283130">+237 686 797 845</a><a href="https://wa.me/237678283130">+237 678 283 130</a></div></div><div class="ci"><div class="ci-ico">✉</div><div class="ci-det"><h4>Email</h4><a href="mailto:saarestg01@gmail.com">saarestg01@gmail.com</a></div></div></div>
+<section id="contact"><div class="sw"><div class="sh fu"><div class="stag">Parlons-nous</div><div class="stit">Contactez-nous</div><p class="ssub">Prêt à sécuriser vos biens ? Notre équipe vous répond rapidement.</p></div><div class="contact-grid"><div class="fu"><div class="ci"><div class="ci-ico">☎</div><div class="ci-det"><h4>Téléphone</h4><a href="tel:+237686797845">+237 686 797 845</a><a href="tel:+237678283130">+237 678 283 130</a><a href="tel:+237699085808">+237 699 085 808</a></div></div><div class="ci"><div class="ci-ico"><i class="fab fa-whatsapp"></i></div><div class="ci-det"><h4>WhatsApp</h4><a href="https://wa.me/237678283130">+237 686 797 845</a><a href="https://wa.me/237678283130">+237 678 283 130</a></div></div><div class="ci"><div class="ci-ico">✉</div><div class="ci-det"><h4>Email</h4><a href="mailto:saarestg01@gmail.com">saarestg01@gmail.com</a></div></div></div>
 <form class="cform fu" onsubmit="onSub(event)"><input type="text" placeholder="Votre nom complet" required><input type="tel" placeholder="Votre numéro" required><select required><option disabled selected>Type de bien à équiper</option><option>Moto personnelle – 35 000 FCFA</option><option>Moto commerciale – 40 000 FCFA</option><option>Voiture – 45 000 FCFA</option><option>Appareils – 30-35K FCFA</option><option>Camion local – 60 000 FCFA</option><option>Camion international – 120 000 FCFA</option></select><input placeholder="Votre ville"><textarea placeholder="Votre message…"></textarea><button type="submit">📨 Envoyer le message</button></form></div></div></section>
 
 <footer><div class="fi"><div><a href="#" class="fbrand"><img class="nav-logo-img" src="logo-entreprise.jpeg"><span class="fbrand-name">SAARE <span>Tracking</span></span></a><p class="fdesc">Spécialiste GPS et géolocalisation au Cameroun.</p></div><div class="fcol"><h4>Services</h4><a href="#services">GPS Moto</a><a href="#services">GPS Voiture</a><a href="#services">GPS Camion</a><a href="#services">Objets de valeur</a></div><div class="fcol"><h4>Contacts</h4><a href="tel:+237686797845">+237 686 797 845</a><a href="tel:+237678283130">+237 678 283 130</a><a href="mailto:saarestg01@gmail.com">saarestg01@gmail.com</a></div><div class="fcol"><h4>Agences</h4><a href="#localisation">Ngaoundéré</a><a href="#localisation">Garoua</a><a href="#localisation">Maroua</a><a href="#localisation">Douala</a></div></div><div class="fbot"><span>© 2026 SAARE Tracking – Powered By <a href="https://muss.digital" target="_blank" style="color:var(--orange);">MUSS DIGITAL</a> · Cameroun</span><span>Localisez, sécurisez, protégez.</span></div></footer>
-<a class="wa-f" href="https://wa.me/237678283130" target="_blank"><svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347M12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0012.05 0z"/></svg></a>
+<a class="wa-f" href="https://wa.me/237678283130" target="_blank"><i class="fab fa-whatsapp"></i></a>
 
 <script>
 const observer = new IntersectionObserver(entries => { entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('vis'); }); }, { threshold: 0.08, rootMargin: "0px 0px -20px 0px" });
@@ -469,7 +516,7 @@ document.getElementById('popup-overlay')?.addEventListener('click', function(e) 
 document.addEventListener('keydown', (e) => { if(e.key === 'Escape') closePopup(); });
 function onSub(e) { e.preventDefault(); const btn = e.target.querySelector('button'); btn.textContent = '✅ Message envoyé !'; btn.style.background = '#22c55e'; setTimeout(() => { btn.textContent = '📨 Envoyer le message'; btn.style.background = ''; e.target.reset(); }, 3000); }
 
-// INTERACTIVE MAP: clic sur une agence -> change l'iframe et met à jour la légende
+// INTERACTIVE MAP: clic sur une agence -> change l'iframe et légende
 const lcCards = document.querySelectorAll('.lc');
 const mapIframe = document.getElementById('agency-map');
 const mapCaption = document.querySelector('.map-cap');

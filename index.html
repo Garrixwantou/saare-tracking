@@ -92,7 +92,7 @@ nav{position:sticky;top:0;z-index:200;background:rgba(255,255,255,.97);backdrop-
 
 /* TARIFS */
 #tarifs{background:linear-gradient(155deg,#0d2878 0%,#1a3fa4 55%,#1e4ec8 100%)}
-.pc-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:18px}
+.pc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
 .pc{background:rgba(255,255,255,.06);border:1.5px solid rgba(255,255,255,.1);border-radius:var(--radius);overflow:hidden;transition:all .3s}
 .pc:hover{background:rgba(255,255,255,.1);transform:translateY(-4px);box-shadow:0 16px 40px rgba(0,0,0,.25)}
 .pc.feat{border-color:var(--orange);background:rgba(242,101,34,.08)}
@@ -174,27 +174,127 @@ footer{background:var(--dark);color:rgba(255,255,255,.6);padding:50px 5% 30px}
 .fu{opacity:0;transform:translateY(26px);transition:opacity .6s ease,transform .6s ease}
 .fu.vis{opacity:1;transform:translateY(0)}
 
+/* POPUP */
+#popup-overlay{position:fixed;inset:0;z-index:9999;background:rgba(10,20,50,.75);backdrop-filter:blur(6px);display:flex;align-items:center;justify-content:center;padding:16px;animation:fadeInBg .4s ease}
+@keyframes fadeInBg{from{opacity:0}to{opacity:1}}
+#popup-box{position:relative;max-width:780px;width:100%;animation:popIn .45s cubic-bezier(.34,1.56,.64,1)}
+@keyframes popIn{from{opacity:0;transform:scale(.82) translateY(30px)}to{opacity:1;transform:scale(1) translateY(0)}}
+#popup-img-wrap{width:100%;overflow:hidden;border-radius:16px;box-shadow:0 32px 80px rgba(0,0,0,.5)}
+#popup-img{width:100%;display:block;border-radius:16px}
+/* CTA positioned to cover exactly the orange band in the image (y=86.1%→93.4%) */
+#popup-cta-area{position:absolute;bottom:6.6%;left:0;width:75%;height:7.4%;padding:0}
+#popup-cta{display:flex;width:100%;height:100%;background:linear-gradient(135deg,#f26522,#ff9144);color:#fff;font-family:'Bebas Neue',sans-serif;font-size:1.22rem;letter-spacing:2.5px;text-align:center;padding:0 20px;border-radius:0;text-decoration:none;box-shadow:none;transition:all .25s;border:none;cursor:pointer;align-items:center;justify-content:center;gap:10px}
+#popup-cta:hover{background:linear-gradient(135deg,#ff7a30,#ffaa60);letter-spacing:3px}
+#popup-close{position:absolute;top:-14px;right:-14px;width:36px;height:36px;border-radius:50%;background:#fff;color:#12264a;font-size:1.1rem;font-weight:900;border:none;cursor:pointer;box-shadow:0 4px 14px rgba(0,0,0,.25);display:flex;align-items:center;justify-content:center;transition:all .2s;line-height:1;z-index:10}
+#popup-close:hover{background:#f26522;color:#fff;transform:rotate(90deg)}
+
+/* TARIFS 3 per row */
+.pc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+
+/* AVANTAGES 3 per row */
+.feat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+
+/* LOCALISATION 3 per row */
+.loc-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+
+/* Enhanced card animations */
+.svc,.pc,.fc,.lc{transition:all .35s cubic-bezier(.34,1.4,.64,1)}
+.svc:hover,.pc:hover,.fc:hover,.lc:hover{transform:translateY(-8px) scale(1.02)}
+.fc{position:relative;overflow:hidden}
+.fc::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(242,101,34,.04),rgba(26,63,164,.04));opacity:0;transition:opacity .3s}
+.fc:hover::before{opacity:1}
+.fc-ico{transition:transform .35s cubic-bezier(.34,1.5,.64,1)}
+.fc:hover .fc-ico{transform:scale(1.2) rotate(-5deg)}
+.lc{position:relative;overflow:hidden}
+.lc::after{content:'';position:absolute;bottom:0;left:0;width:0;height:3px;background:var(--orange);transition:width .3s ease}
+.lc:hover::after{width:100%}
+.lc-pin{transition:transform .3s cubic-bezier(.34,1.5,.64,1)}
+.lc:hover .lc-pin{transform:scale(1.25) rotate(10deg)}
+.pc-img{transition:transform .4s ease}
+.pc:hover .pc-img{transform:scale(1.06)}
+.svc-b h3,.pc-name{transition:color .2s}
+.pc:hover .pc-name{color:var(--orange)}
+
+/* Staggered entrance animations */
+.svc-grid .svc:nth-child(1){transition-delay:.05s}
+.svc-grid .svc:nth-child(2){transition-delay:.1s}
+.svc-grid .svc:nth-child(3){transition-delay:.15s}
+.svc-grid .svc:nth-child(4){transition-delay:.2s}
+.svc-grid .svc:nth-child(5){transition-delay:.25s}
+.svc-grid .svc:nth-child(6){transition-delay:.3s}
+.pc-grid .pc:nth-child(1){transition-delay:.05s}
+.pc-grid .pc:nth-child(2){transition-delay:.1s}
+.pc-grid .pc:nth-child(3){transition-delay:.15s}
+.pc-grid .pc:nth-child(4){transition-delay:.2s}
+.pc-grid .pc:nth-child(5){transition-delay:.25s}
+.pc-grid .pc:nth-child(6){transition-delay:.3s}
+.feat-grid .fc:nth-child(1){transition-delay:.05s}
+.feat-grid .fc:nth-child(2){transition-delay:.1s}
+.feat-grid .fc:nth-child(3){transition-delay:.15s}
+.feat-grid .fc:nth-child(4){transition-delay:.2s}
+.feat-grid .fc:nth-child(5){transition-delay:.25s}
+.feat-grid .fc:nth-child(6){transition-delay:.3s}
+.loc-cards .lc:nth-child(1){transition-delay:.05s}
+.loc-cards .lc:nth-child(2){transition-delay:.1s}
+.loc-cards .lc:nth-child(3){transition-delay:.15s}
+.loc-cards .lc:nth-child(4){transition-delay:.2s}
+
 @media(max-width:1024px){
   .hero{grid-template-columns:1fr;padding-top:100px}
   .hero-visual{max-width:500px;margin:0 auto}
   .loc-layout{grid-template-columns:1fr}
   .contact-grid{grid-template-columns:1fr}
   .fi{grid-template-columns:1fr 1fr}
+  .svc-grid{grid-template-columns:repeat(3,1fr)}
+  .pc-grid{grid-template-columns:repeat(3,1fr)}
+  .feat-grid{grid-template-columns:repeat(3,1fr)}
+  .loc-cards{grid-template-columns:repeat(3,1fr)}
+}
+@media(max-width:768px){
   .svc-grid{grid-template-columns:repeat(2,1fr)}
+  .pc-grid{grid-template-columns:repeat(2,1fr)}
+  .feat-grid{grid-template-columns:repeat(2,1fr)}
+  .loc-cards{grid-template-columns:repeat(2,1fr)}
+  #popup-cta{font-size:1rem;letter-spacing:2px}
 }
 @media(max-width:680px){
   .nav-links,.nav-cta{display:none}
   .hamburger{display:flex}
   .svc-grid{grid-template-columns:repeat(2,1fr)}
-  .loc-cards{grid-template-columns:1fr}
+  .pc-grid{grid-template-columns:repeat(2,1fr)}
+  .feat-grid{grid-template-columns:repeat(2,1fr)}
+  .loc-cards{grid-template-columns:repeat(2,1fr)}
   .sw{padding:56px 5%}
   .fi{grid-template-columns:1fr}
   .topbar span:first-child{display:none}
   .hbf,.hbf2{display:none}
 }
+@media(max-width:420px){
+  .svc-grid{grid-template-columns:1fr}
+  .pc-grid{grid-template-columns:1fr}
+  .feat-grid{grid-template-columns:1fr}
+  .loc-cards{grid-template-columns:1fr 1fr}
+  #popup-cta{font-size:.85rem;letter-spacing:1.5px}
+}
 </style>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"></head>
 <body>
+
+<!-- POPUP -->
+<div id="popup-overlay" role="dialog" aria-modal="true" aria-label="Offre SAARE Tracking">
+  <div id="popup-box">
+    <button id="popup-close" onclick="closePopup()" aria-label="Fermer">✕</button>
+    <div id="popup-img-wrap">
+      <img id="popup-img" src="Pop-Up_OK.png" alt="SAARE Tracking – Localisez. Sécurisez. Optimisez.">
+    </div>
+    <div id="popup-cta-area">
+      <a id="popup-cta" href="https://wa.me/237678283130" target="_blank" rel="noopener noreferrer">
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="white" style="flex-shrink:0"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        DÉCOUVRIR NOS SOLUTIONS
+      </a>
+    </div>
+  </div>
+</div>
 
 <!-- MOBILE MENU -->
 <div class="mm" id="mm">
@@ -245,7 +345,7 @@ footer{background:var(--dark);color:rgba(255,255,255,.6);padding:50px 5% 30px}
     <p>SAARE Tracking installe des dispositifs GPS de haute précision sur vos véhicules, motos, camions et objets de valeur. Suivez vos biens en temps réel, 24h/24, partout au Cameroun.</p>
     <div class="hero-btns">
       <a href="#tarifs" class="btn-p">▣ Voir les tarifs</a>
-      <a href="https://wa.me/237686797845" target="_blank" class="btn-wa" title="Contactez-nous sur WhatsApp">
+      <a href="https://wa.me/237678283130" target="_blank" class="btn-wa" title="Contactez-nous sur WhatsApp">
         <img src="whatsapp-btn.png" alt="WhatsApp" style="height:54px;display:block;object-fit:contain;">
       </a>
     </div>
@@ -429,7 +529,7 @@ footer{background:var(--dark);color:rgba(255,255,255,.6);padding:50px 5% 30px}
   <div class="contact-grid">
     <div class="fu">
       <div class="ci"><div class="ci-ico">☎</div><div class="ci-det"><h4>Téléphone</h4><a href="tel:+237686797845">+237 686 797 845</a><a href="tel:+237678283130">+237 678 283 130</a><a href="tel:+237699085808">+237 699 085 808</a></div></div>
-      <div class="ci"><div class="ci-ico">💬</div><div class="ci-det"><h4>WhatsApp</h4><a href="https://wa.me/237686797845" target="_blank">+237 686 797 845</a><a href="https://wa.me/237678283130" target="_blank">+237 678 283 130</a></div></div>
+      <div class="ci"><div class="ci-ico">💬</div><div class="ci-det"><h4>WhatsApp</h4><a href="https://wa.me/237678283130" target="_blank">+237 686 797 845</a><a href="https://wa.me/237678283130" target="_blank">+237 678 283 130</a></div></div>
       <div class="ci"><div class="ci-ico">✉</div><div class="ci-det"><h4>Email</h4><a href="mailto:saarestg01@gmail.com">saarestg01@gmail.com</a></div></div>
       <div class="ci"><div class="ci-ico">🏢</div><div class="ci-det"><h4>Siège principal</h4><p>Mboumdjéré-Ngaoundéré, Cameroun</p></div></div>
     </div>
@@ -488,12 +588,12 @@ footer{background:var(--dark);color:rgba(255,255,255,.6);padding:50px 5% 30px}
     </div>
   </div>
   <div class="fbot">
-    <span>© 2026 SAARE Tracking SARL- Powered By MUSS DIGITAL· Cameroun</span>
+    <span>© 2026 SAARE Tracking SARL – Powered By <a href="https://muss.digital" target="_blank" rel="noopener noreferrer" style="color:var(--orange);text-decoration:none;font-weight:700;transition:opacity .2s" onmouseover="this.style.opacity='.7'" onmouseout="this.style.opacity='1'">MUSS DIGITAL</a> · Cameroun</span>
     <span>Localisez, sécurisez, protégez ce qui compte le plus.</span>
   </div>
 </footer>
 
-<a class="wa-f" href="https://wa.me/237686797845" target="_blank" title="WhatsApp">
+<a class="wa-f" href="https://wa.me/237678283130" target="_blank" title="WhatsApp">
   <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
 </a>
 
@@ -502,6 +602,23 @@ const obs = new IntersectionObserver(entries => {
   entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('vis'); });
 }, {threshold:0.08, rootMargin:'0px 0px -30px 0px'});
 document.querySelectorAll('.fu').forEach(el => obs.observe(el));
+
+// Popup
+function closePopup(){
+  const o=document.getElementById('popup-overlay');
+  o.style.transition='opacity .3s';
+  o.style.opacity='0';
+  setTimeout(()=>o.remove(),300);
+}
+document.getElementById('popup-overlay').addEventListener('click',function(e){
+  if(e.target===this) closePopup();
+});
+document.addEventListener('keydown',function(e){if(e.key==='Escape') closePopup();});
+// Add fadeOut keyframe dynamically
+const st=document.createElement('style');
+st.textContent='@keyframes fadeOutBg{to{opacity:0}} #popup-box{animation-fill-mode:forwards} #popup-overlay[style*="fadeOutBg"] #popup-box{animation:popOut .3s ease forwards} @keyframes popOut{to{opacity:0;transform:scale(.85) translateY(20px)}}';
+document.head.appendChild(st);
+
 function onSub(e){
   e.preventDefault();
   const btn=e.target.querySelector('button');
